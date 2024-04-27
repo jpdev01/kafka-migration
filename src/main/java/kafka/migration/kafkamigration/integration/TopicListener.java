@@ -1,4 +1,4 @@
-package kafka.migration.kafkamigration;
+package kafka.migration.kafkamigration.integration;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

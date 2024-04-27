@@ -1,5 +1,6 @@
-package kafka.migration.kafkamigration;
+package kafka.migration.kafkamigration.controller;
 
+import kafka.migration.kafkamigration.integration.TopicProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

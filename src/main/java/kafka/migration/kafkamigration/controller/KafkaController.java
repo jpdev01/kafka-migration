@@ -1,5 +1,6 @@
 package kafka.migration.kafkamigration.controller;
 
+import kafka.migration.kafkamigration.domain.Customer;
 import kafka.migration.kafkamigration.integration.TopicProducer;
 import kafka.migration.kafkamigration.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -22,5 +24,10 @@ public class KafkaController {
         System.out.println("---> Starting synchronous data load at " + Instant.now());
         customerService.loadData();
         System.out.println("---> Synchronous data load completed at " + Instant.now());
+    }
+
+    @GetMapping("/send-to-kafka-broker")
+    public void sendToKafka() {
+        customerService.list().forEach(topicProducer::send);
     }
 }

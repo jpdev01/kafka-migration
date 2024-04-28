@@ -1,5 +1,6 @@
 package kafka.migration.kafkamigration.integration;
 
+import kafka.migration.kafkamigration.domain.Customer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,11 +15,11 @@ public class TopicProducer {
     @Value("${topic.name.producer}")
     private String topicName;
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Customer> kafkaTemplate;
 
-    public void send(String message){
-        log.info("Payload enviado: {}", message);
-        kafkaTemplate.send(topicName, message);
+    public void send(Customer customer){
+        log.info("Payload enviado: {}", customer.getId());
+        kafkaTemplate.send(topicName, customer);
     }
 
 }

@@ -6,6 +6,8 @@ import kafka.migration.kafkamigration.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -18,6 +20,10 @@ public class CustomerService {
         for (int i = 0; i <= batchSize; i++) {
             customerRepository.save(buildCustomer(i));
         }
+    }
+
+    public List<Customer> list() {
+        return customerRepository.findAll();
     }
 
     private Customer buildCustomer(int index) {
